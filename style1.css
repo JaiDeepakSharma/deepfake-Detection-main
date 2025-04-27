@@ -1,0 +1,360 @@
+/* Reset + Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+/* Root Variables */
+:root {
+    --primary-gradient: linear-gradient(to right, #0e465d, #272462, #1a2b32);
+    --secondary-gradient: linear-gradient(135deg, #4e1f11 0%, #3949ab 100%);
+    --primary-color: #90caf9;
+    --secondary-color: #ff8a65;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  transition: background 120s ease;
+  overflow-x: hidden;
+}
+
+/* Animated Background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: url("https://www.transparenttextures.com/patterns/cubes.png");
+    opacity: 0.05;
+    z-index: -1;
+    animation: moveBackground 60s linear infinite;
+}
+
+@keyframes moveBackground {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 1000px; }
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.7rem;
+  color: var(--primary-color);
+  transition: transform 0.3s;
+}
+
+nav .logo:hover {
+  transform: scale(1.05);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.3s;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: 0.4s ease;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #4e1f11 0%, #3949ab 100%);
+  color: #fff;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  color: #cfd8dc;
+}
+
+/* Sections */
+section {
+  padding: 3rem 2rem;
+  max-width: 1100px;
+  margin: auto;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+section:nth-child(odd) {
+  animation-delay: 0.3s;
+}
+section:nth-child(even) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Titles */
+h2 {
+  margin-bottom: 1.5rem;
+  color: #bbdefb;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* Timeline Horizontal */
+.timeline-horizontal {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.stage {
+  flex: 1;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  border: 1px solid #90caf9;
+  color: #ffffff;
+  font-weight: bold;
+  min-width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.stage:hover {
+  transform: scale(1.05);
+}
+
+/* Team Section */
+.team-leader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.team-leader img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px; /* Slightly rounded corners */
+  border: 3px solid #121213;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.team-leader h3 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.member-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.member {
+  text-align: center;
+}
+
+.member img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #1f2d39;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.member h3 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Mentor Section */
+.mentor-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.mentor-group img {
+  width: 250px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: transform 0.4s ease;
+}
+
+.mentor-group img:hover {
+  transform: scale(1.03);
+}
+
+/* Project Link */
+#project a {
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  background: #90caf9;
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+#project p {
+  text-align: center;
+}
+
+
+#project a:hover {
+  background: #64b5f6;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+/* Smooth transitions and hover zoom effect for images */
+.member img,
+.team-leader img,
+.mentor-group img {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* On hover: zoom + shadow effect */
+.member img:hover,
+.mentor-group img:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: shadow + lift on full member card */
+.member:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Description styles */
+.description {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: black; /* Ensures background blends with the page */
+  color: #ffffff; /* Keeps text color consistent with your design */
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow effect */
+}
+
+/* Transition when showing description */
+.description.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(10px);
+}
+
+/* Cards and Sections */
+.hero-section,
+.upload-form,
+.showcase-section,
+.feature-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(17, 78, 139, 0.05);
+    border-radius: 1rem;
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+/* Buttons */
+.btn-primary {
+    background: var(--secondary-gradient);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 30px;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-color);
+    color: #971414;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    padding-top: 20px;
+}
+
+.social-icon {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--secondary-color);
+}
+
+

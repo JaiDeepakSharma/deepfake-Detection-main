@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - DeepFake Detection</title>
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(to right, #0a1418, #121f24, #1a2b32);
+            --secondary-gradient: linear-gradient(135deg, #2d0f0a 0%, #1a1f4e 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            transition: background 120s ease;
+            overflow-x: hidden;
+        }
+
+        /* Live Background Animation */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/cubes.png");
+            opacity: 0.05;
+            z-index: -1;
+            animation: moveBackground 60s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            
+        }
+
+        nav .logo {
+            font-weight: bold;
+            font-size: 1.7rem;
+            color: #90caf9;
+            transition: transform 0.3s;
+        }
+
+        nav .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #90caf9;
+            transition: 0.4s ease;
+        }
+
+        nav a:hover {
+            color: #90caf9;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Register Card */
+        .register-container {
+            min-height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .register-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(144, 202, 249, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .register-header h2 {
+            color: #bbdefb;
+            margin-bottom: 0.5rem;
+        }
+
+        .register-header p {
+            color: #90caf9;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #bbdefb;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(144, 202, 249, 0.3);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #90caf9;
+            box-shadow: 0 0 0 2px rgba(144, 202, 249, 0.2);
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary-gradient);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .register-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .register-footer a {
+            color: #90caf9;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .register-footer a:hover {
+            color: #64b5f6;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(0,0,0,0.3);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .social-icon {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: #90caf9;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            color: #64b5f6;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">DeepFake Detection</div>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="login.html" class="nav-link">Login</a></li>
+        </ul>
+    </nav>
+    <script>type ="module"; src ="register.js" ;defer></script>;
+    <div class="register-container">
+        <div class="register-card">
+            <div class="register-header">
+                <h2>Create Account</h2>
+                <p>Join DeepFake Detection today</p>
+            </div>
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="btn-register">Register</button>
+            </form>
+            <div class="register-footer">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>© 2024 RealityCheck, Inc</p>
+    </footer>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="auth.js"></script>
+    <script>
+        async function handleRegister(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return false;
+            }
+            
+            const result = await auth.register(email, password);
+            
+            if (result.success) {
+                alert(result.message);
+                window.location.href = 'login.html';
+            } else {
+                alert(result.message);
+            }
+            
+            return false;
+        }
+
+        // Check if user is already logged in
+        async function checkAuth() {
+            if (await auth.isLoggedIn()) {
+                window.location.href = 'introduction2.html';
+            }
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html> 

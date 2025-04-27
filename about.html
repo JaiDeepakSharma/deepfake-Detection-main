@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>About - DeepSheild-C</title>
+    <link rel="stylesheet" href="style1.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(to right, #0e465d, #272462, #1a2b32);
+            --secondary-gradient: linear-gradient(135deg, #4e1f11 0%, #3949ab 100%);
+            --primary-color: #90caf9;
+            --secondary-color: #ff8a65;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            transition: background 120s ease;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url("https://www.transparenttextures.com/patterns/cubes.png");
+            opacity: 0.05;
+            z-index: -1;
+            animation: moveBackground 60s linear infinite;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            background: none;
+            -webkit-text-fill-color: initial;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .nav-link::after {
+            background: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(144, 202, 249, 0.2);
+            color: #ffffff;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Team Section */
+        .team-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .team-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(144, 202, 249, 0.2);
+            color: #ffffff;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-card:hover .member-photo {
+            transform: scale(1.1);
+        }
+        
+        .role-badge {
+            background: var(--secondary-gradient);
+            border: 1px solid var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            display: inline-block;
+        }
+        
+        .social-links a {
+            color: var(--primary-color);
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.2);
+            color: var(--secondary-color);
+        }
+
+        .card-title, .card-text {
+            color: #ffffff;
+        }
+
+        /* Project Overview */
+        .project-overview {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(144, 202, 249, 0.2);
+            color: #ffffff;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .stage {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-color);
+            color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ffffff;
+            border-top: 1px solid rgba(144, 202, 249, 0.2);
+        }
+
+        .social-icon {
+            color: var(--primary-color);
+        }
+        
+        .social-icon:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .team-section {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .member-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            .stage {
+                margin: 1rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.5rem 1rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+            
+            .nav-link {
+                padding: 0.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+            
+            .team-card {
+                padding: 1rem;
+            }
+            
+            .member-photo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .role-badge {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+        }
+
+        /* Smooth Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Staggered Animation Delays */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        @media (max-width: 992px) {
+            .project-overview {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+        }
+
+        .team-card:hover,
+        .stage:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .member-photo {
+            border-color: var(--primary-color);
+        }
+
+        .team-card:hover .member-photo {
+            transform: scale(1.1);
+            border-color: var(--secondary-color);
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="Logo2.jpg" alt="logo" height="50">
+                 DeepSheild-C
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4">Our Story</h1>
+                    <p class="lead mb-4">
+                        Deepsheild-C is a cutting-edge deepfake detection platform developed by a team of passionate engineers and researchers. 
+                        Our mission is to combat digital misinformation and protect the integrity of online content.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="deepfake.jpg" alt="About DeepSheild-C" class="img-fluid rounded-3 shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fade-in-up">Meet Our Team</h2>
+            <div class="team-section">
+                <!-- Team Member 1 -->
+                <div class="team-card fade-in-up delay-1">
+                    <div class="card-body text-center">
+                        <img src="Kartik.jpg" alt="Team Leader" class="member-photo">
+                        <h5 class="card-title">Kartik Dhawale</h5>
+                        <div class="role-badge">Team Leader</div>
+                        <p class="card-text">Project management, coordination, and development</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/kartik-dhawale-287204274"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/kartik-dhawale"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card fade-in-up delay-2">
+                    <div class="card-body text-center">
+                        <img src="AtharvaKulkarni.jpg" alt="Member 1" class="member-photo">
+                        <h5 class="card-title">Atharva Kulkarni</h5>
+                        <div class="role-badge">Machine Learning Engineer</div>
+                        <p class="card-text">Development of Machine Learning model </p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/atharva-kulkarni-284372248"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card fade-in-up delay-3">
+                    <div class="card-body text-center">
+                        <img src="jaiimage.jpg" alt="Member 2" class="member-photo">
+                        <h5 class="card-title">Jai Sharma</h5>
+                        <div class="role-badge">Frontend & Backend Developer</div>
+                        <p class="card-text">Frontend And Server-side development and API integration</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card fade-in-up delay-1">
+                    <div class="card-body text-center">
+                        <img src="Allen.jpg" alt="Member 3" class="member-photo">
+                        <h5 class="card-title">Allen Jess</h5>
+                        <div class="role-badge">Documentattion Expert </div>
+                        <p class="card-text">DeepSheild-C Documentation management and Creation</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/allen-jess/"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/allen-jesss"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Overview -->
+            <div class="project-overview fade-in-up">
+                <h2 class="text-center mb-4">Project Journey</h2>
+                <p class="text-center mb-5">
+                    Our team is working on developing an advanced deepfake detection system that can identify manipulated media content. 
+                    We combine expertise in machine learning, web development, and user experience to create a robust solution.
+                </p>
+                <div class="timeline">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="stage">
+                                <h4>💡 Idea Phase</h4>
+                                <p>Identifying the problem and conceptualizing the solution</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stage">
+                                <h4>🧪 Research</h4>
+                                <p>Exploring deepfake detection techniques and technologies</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stage">
+                                <h4>🛠️ Development</h4>
+                                <p>Building and testing the detection system</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="stage">
+                                <h4>🚀 Final Submission</h4>
+                                <p>Launching the platform and gathering feedback</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="Logo2.png" alt="logo" height="50">
+                    <span class="ms-2">© 2025 DeepSheild-C, SVPCET</span>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="https://github.com/JaiDeepakSharma/deepfake-Detection.git" class="social-icon"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
